@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <h:head>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+    <title>Artikelverwaltung</title>
+  </h:head>
+  <h:body>
+    <p><img id="kopf_links" src="logo.jpg" width="250" alt="Logo"/></p>
+    <p id="kopf_rechts">
+      <h:outputText value="#{anschrift.name}"/><br />
+      <h:outputText value="#{anschrift.strasse} #{anschrift.hausnummer}"/><br />
+      <h:outputText value="#{anschrift.plz} #{anschrift.ort}"/>
+    </p>
+    <h1>Artikelverwaltung</h1>
+    <h2>Artikel erfassen</h2>
+    <h:form>
+      <h:panelGrid columns="3">
+        <h:commandLink value="zurück" action="#{artikelController.zurueck()}"
+                       rendered="#{artikelController.index > 0}"/>
+        <h:outputText rendered="#{artikelController.index == 0}" value=" "/>
+        <h:commandLink value="vor" action="#{artikelController.vor()}"/>
+        <p />
+        <h:outputLabel value="Nr:" for="nr"/>
+        <h:outputText id="nr" value="#{artikelController.artikel.nr}"/>
+        <p />
+        
+        <h:outputLabel value="GTIN:" for="gtin"/>
+        <h:inputText id="gtin" value="#{artikelController.artikel.gtin}" 
+                     validator="#{artikelController.validateGTIN}"/>
+        <h:message styleClass="error" for="gtin"/>
+        
+        <h:outputLabel value="Name:" for="name"/>
+        <h:inputText id="name" value="#{artikelController.artikel.name}" size="25" required="true"/>
+        <h:message styleClass="error" for="name"/>
+        
+        <h:outputLabel value="Beschreibung: " for="text"/>
+        <h:inputText id="text" value="#{artikelController.artikel.text}" size="25"/>
+        <h:message styleClass="error" for="text"/>
+        
+        <h:outputLabel value="Bild-Datei: " for="bilddatei"/>
+        <h:inputText id="bilddatei" value="#{artikelController.artikel.bild}" size="25">
+             <f:validateRegex pattern="[a-zA-Z0-9]+.(jpg|jpeg|gif|png)"/>
+        </h:inputText>
+        <h:message styleClass="error" for="bilddatei"/>
+        
+        <h:outputLabel value="Preis: " for="preis"/>
+        <h:inputText id="preis" value="#{artikelController.artikel.preis}" label="Preis">
+          <f:convertNumber type="currency" currencySymbol="EUR"/>
+        </h:inputText>
+        <h:message styleClass="error" for="preis"/>
+        
+        <h:outputLabel value="Erstellt am: " for="erstellt"/>
+        <h:inputText id="erstellt" value="#{artikelController.artikel.erstelldatum}" >
+          <f:convertDateTime type="date" dateStyle="short"/>
+        </h:inputText>
+        <h:message styleClass="error" for="erstellt"/>
+        
+        <h:outputLabel value="Bild: " for="bild"/>
+        <h:graphicImage id="bild" url="#{artikelController.artikel.bild}" height="100" width="100"/>
+        <br />
+        <h:commandLink value="zurück" action="#{artikelController.zurueck()}"
+                       rendered="#{artikelController.index > 0}"/>
+        <h:outputText rendered="#{artikelController.index == 0}" value=" "/>
+        <h:commandLink value="vor" action="#{artikelController.vor()}" />
+      </h:panelGrid>
+    </h:form>
+    <p id="fussnote">Bitte beachten Sie: <br /> Diese Seite ist nur ein Entwurf!</p>
+  </h:body>
+</html>

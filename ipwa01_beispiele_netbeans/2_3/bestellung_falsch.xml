@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bestellung>
+  <kopfdaten auftraggeber="Samuel Berg">
+		<bestellnr>48729</bestellnr>
+    <bestellung_vom>04.12.2011</bestellung_vom>
+    <kundennummer>AD-4333 532</kundennummer>
+  </kopfdaten>
+  <positionsdaten>
+    <position>
+      <id>1</id>
+      <artikelnr>57823566</artikelnr>
+      <menge>4</menge>
+			<preisEUR>15,90</preisEUR>
+    </position>
+    <position>
+      <id>2</id>
+      <artikelnr>54733462</artikelnr>
+      <menge>2</menge>
+			<preisEUR>8,90</preisEUR>
+    </position>
+  </positionsdaten>
+</bestellung>

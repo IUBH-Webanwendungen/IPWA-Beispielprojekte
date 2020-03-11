@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<link rel="stylesheet" type="text/css" media="screen" href="stle.css"/>
+		<title>Artikel bearbeiten</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:panelGrid columns="2" id="editTable" border="1" style="border-collapse: collapse">
+				<h:outputText value="Nummer" />
+				<h:inputText value="#{artikelController.neuerArtikel.nr}" />
+
+				<h:outputText value="Name" />
+				<h:inputText value="#{artikelController.neuerArtikel.name}" />
+
+				<h:outputText value="Beschreibung" />
+				<h:inputTextarea value="#{artikelController.neuerArtikel.text}" />
+
+				<h:outputText value="Verfügbar ab" />
+				<rich:calendar value="#{artikelController.neuerArtikel.verfuegbarAb}" >
+					</rich:calendar>
+
+				<h:outputText value="Bild" />
+				<h:panelGrid columns="1">
+					<h:inputText value="#{artikelController.neuerArtikel.bild}" />
+					<h:graphicImage class="artikel" url="#{artikelController.neuerArtikel.bild}" />
+				</h:panelGrid>
+
+				<h:outputText value="Aktionen" />
+				<h:panelGrid columns="2">
+					<h:commandButton	action="#{artikelController.abbrechen}" 
+													 value="Abbrechen"/>
+					<h:commandButton	action="#{artikelController.speichern}" 
+													 value="Speichern"/>
+				</h:panelGrid>
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

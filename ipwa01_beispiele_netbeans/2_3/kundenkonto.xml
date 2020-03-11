@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kundenkonto>
+	<kundenNr>4711</kundenNr>
+	<name>
+		<vorname>Wilhelm</vorname>
+		<nachname>Schiefer</nachname>
+		<geburtsname>Brecht</geburtsname>
+	</name>
+	<geschlecht>männlich</geschlecht>
+	<adresse>
+	  <strasse>Im Schlag</strasse>
+		<hausNr>14</hausNr>
+		<zusatz>a</zusatz>
+		<PLZ>33421</PLZ>
+		<Ort>Hersfeld</Ort>
+	</adresse>
+	<bankverbindung gueltig_ab="07.10.2013">
+		<inhaber>Klara Schiefer</inhaber>
+		<kontoNr>7492456629</kontoNr>
+		<BLZ>85038137</BLZ>
+		<bankName>Volksbank Bad Reutlingen</bankName>
+	</bankverbindung>
+</kundenkonto>

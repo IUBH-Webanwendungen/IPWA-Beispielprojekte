@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <h:head>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+    <title>Artikelverwaltung</title>
+  </h:head>
+  <h:body>
+    <p><img id="kopf_links" src="logo.jpg" width="250" alt="Logo"/></p>
+    <p id="kopf_rechts">
+      <h:outputText value="#{anschrift.name}"/><br />
+      <h:outputText value="#{anschrift.strasse} #{anschrift.hausnummer}"/><br />
+      <h:outputText value="#{anschrift.plz} #{anschrift.ort}"/>
+    </p>
+    <h1>Artikelverwaltung</h1>
+    <h2>Login</h2>
+    <h:form>
+      <h:panelGrid columns="2">
+        <h:outputLabel value="Benutzername: " for="name"/>
+        <h:inputText id="name" value="#{loginController.benutzer.name}" size="25" >
+          <f:event type="javax.faces.event.PostValidateEvent"
+                   listener="#{loginController.postValidateName}"/>
+        </h:inputText>
+        <h:outputLabel value="Passwort: " for="pass"/>
+        <h:inputSecret id="pass" value="#{loginController.benutzer.passwort}" required="true" 
+                       validator="#{loginController.validateLogin}" size="25" />
+        <h:commandLink value="login" action="#{loginController.login()}" />
+      </h:panelGrid>
+      <h:messages styleClass="error"/>
+    </h:form>
+    <p id="fussnote">Bitte beachten Sie: <br /> Diese Seite ist nur ein Entwurf!</p>
+  </h:body>
+</html>

@@ -1,0 +1,13 @@
+<month year="2013" lang="de">
+	<monthOfYear>9</monthOfYear>
+	<name>September</name>
+	 <day>
+		<dayOfMonth>1</dayOfMonth>
+		<weekDay>Sonntag</weekDay>
+	</day>
+	<day>
+		<dayOfMonth>2</dayOfMonth>
+		<weekDay>Montag</weekDay>
+	</day>
+	...
+</month>

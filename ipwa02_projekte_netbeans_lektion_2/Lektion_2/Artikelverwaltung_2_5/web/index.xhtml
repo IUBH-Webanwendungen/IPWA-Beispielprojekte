@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+			xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  <h:head>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+    <title>Artikelverwaltung</title>
+  </h:head>
+  <h:body>
+    <p><img id="kopf_links" src="logo.jpg" width="250" alt="Logo"/></p>
+    <p id="kopf_rechts">
+      <h:outputText value="#{anschrift.name}"/><br />
+      <h:outputText value="#{anschrift.strasse} #{anschrift.hausnummer}"/><br />
+      <h:outputText value="#{anschrift.plz} #{anschrift.ort}"/>
+    </p>
+    <h1>Artikelverwaltung</h1>
+    <h2>Artikel erfassen</h2>
+    <h:form>
+      <h:panelGrid columns="2">
+				<div></div>
+				<h:commandLink id="neuerArtikel" value="Artikel erstellen" action="#{artikelController.add()}"/>
+        <h:commandLink value="zurück" action="#{artikelController.zurueck()}"
+                       rendered="#{artikelController.index > 0}"/>
+        <h:outputText rendered="#{artikelController.index == 0}" value=" "/>
+        <h:commandLink value="vor" action="#{artikelController.vor()}"/>
+        <h:outputLabel value="Nr:" for="nr"/>
+        <h:outputText id="nr" value="#{artikelController.artikel.nr}"/>
+        <h:outputLabel value="Name:" for="name"/>
+        <h:inputText id="name" value="#{artikelController.artikel.name}" size="40"/>
+        <h:outputLabel value="Beschreibung: " for="text"/>
+        <h:inputText id="text" value="#{artikelController.artikel.text}" size="40"/>
+        <h:outputLabel value="Bild-Datei: " for="bilddatei"/>
+        <rich:select value="#{artikelController.artikel.bild}">
+					<f:selectItem itemValue="filzschuhe.jpg" itemLabel="filzschuhe.jpg"/>
+					<f:selectItem itemValue="handtasche.jpg" itemLabel="handtasche.jpg"/>
+					<f:selectItem itemValue="hasen.png" itemLabel="hasen.png"/>
+					<a4j:ajax event="change" render="bild"/>
+        </rich:select>
+        <html></html>
+        <h:inputText 
+					id="bilddatei"
+					value="#{artikelController.artikel.bild}"
+					size="40" >
+					<a4j:ajax event="keyup" render="bild"/>
+				</h:inputText>
+
+        <h:outputLabel value="Verfügbar ab:" for="verfuegbarAb"/>
+        <rich:calendar 
+					id="verfuegbarAb" 
+					value="#{artikelController.artikel.verfuegbarAb}" 
+					datePattern="dd.MM.yyyy"
+					enableManualInput="true">
+        </rich:calendar>
+        <h:outputLabel value="Bild: " for="bild"/>
+        <h:graphicImage id="bild" url="#{artikelController.artikel.bild}" />
+				
+				<h:outputText value="Bewertung abgeben" />
+				<h:panelGrid columns="1">
+					<h:selectOneRadio value="#{artikelController.neueBewertung.sterne}">
+						<f:selectItem itemLabel="1 Stern" itemValue="1"/>
+						<f:selectItem itemLabel="2 Sterne" itemValue="2"/>
+						<f:selectItem itemLabel="3 Sterne" itemValue="3"/>
+						<f:selectItem itemLabel="4 Sterne" itemValue="4"/>
+						<f:selectItem itemLabel="5 Sterne" itemValue="5"/>
+					</h:selectOneRadio>
+					<h:inputTextarea value="#{artikelController.neueBewertung.kommentar}" />
+					<h:commandButton action="#{artikelController.bewertungSpeichern}" value="Bewertung speichern"/>
+				</h:panelGrid>
+
+				<h:outputText value="Bewertungen" />
+				<h:panelGrid columns="1">
+					<ui:repeat value="#{artikelController.artikel.bewertungen}" 
+										 var="bewertung" >
+						<div>
+							<h:outputText value="#{bewertung.sterne} Stern(e)" />: 
+							<h:outputText value="#{bewertung.kommentar}" />
+							<hr/>
+						</div>
+					</ui:repeat>
+				</h:panelGrid>
+							
+        <h:commandLink value="zurück" action="#{artikelController.zurueck()}"
+                       rendered="#{artikelController.index > 0}"/>
+        <h:commandLink value="vor" action="#{artikelController.vor()}" />
+
+	
+      </h:panelGrid>
+    </h:form>
+    <p id="fussnote">Bitte beachten Sie: <br /> Diese Seite ist nur ein Entwurf!</p>
+  </h:body>
+</html>

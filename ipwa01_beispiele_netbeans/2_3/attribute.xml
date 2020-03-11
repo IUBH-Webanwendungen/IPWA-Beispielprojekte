@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wurzel attribut_1="Ein Wert" attribut_2="4711">
+  <element attribut_2="42">Zeichenkette</element>
+  <element attribut_3="08/15"/>
+</wurzel>
