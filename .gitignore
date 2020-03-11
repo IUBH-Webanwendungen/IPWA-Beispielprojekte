@@ -1,0 +1,7 @@
+.project
+build
+private
+target
+.idea
+.DS_Store
+*.iml
