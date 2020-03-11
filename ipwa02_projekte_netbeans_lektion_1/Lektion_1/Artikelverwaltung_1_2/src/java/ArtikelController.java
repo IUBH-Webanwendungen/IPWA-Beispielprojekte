@@ -19,8 +19,8 @@ public class ArtikelController {
     if (!id.endsWith(String.valueOf(cipher)))
     {
       throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-              id + " ist eine " + "fehlerhafte GTIN (erwartete Prüfziffer: " +
-                      cipher + ")", "")
+              "Fehlerhafte GTIN",
+              id + " ist eine " + "fehlerhafte GTIN (erwartete Prüfziffer: " +  cipher + ")")
       );
     }
   }
