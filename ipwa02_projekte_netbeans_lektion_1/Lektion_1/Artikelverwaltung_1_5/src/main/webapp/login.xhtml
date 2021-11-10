@@ -20,13 +20,13 @@
       <h:panelGrid columns="2">
         <h:outputLabel value="Benutzername: " for="name"/>
         <h:inputText id="name" value="#{loginController.benutzer.name}" size="25" >
-          <f:event type="javax.faces.event.PostValidateEvent"
+          <f:event type="jakarta.faces.event.PostValidateEvent"
                    listener="#{loginController.postValidateName}"/>
         </h:inputText>
         <h:outputLabel value="Passwort: " for="pass"/>
         <h:inputSecret id="pass" value="#{loginController.benutzer.passwort}" required="true" 
                        validator="#{loginController.validateLogin}" size="25" />
-        <h:commandLink value="login" action="#{loginController.login()}" />
+        <h:commandLink value="login" action="#{loginController.login}" />
       </h:panelGrid>
       <h:messages styleClass="error"/>
     </h:form>
