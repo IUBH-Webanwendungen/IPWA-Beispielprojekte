@@ -1,47 +1,29 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
-/**
- * @author marian.benner
- */
-@ManagedBean()
+@Named
 @ApplicationScoped
 public class Shop
 {
-    private static Shop instance;
-
     private List<Artikel> sortiment = new ArrayList<Artikel>();
 
     private EntityManagerFactory entityManagerFactory;
 
     public Shop()
     {
-        instance = this;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("onlineshop");
         } catch (Exception e) {
             throw new IllegalStateException("Can't create database connection.", e);
         }
-    }
-
-    public static Shop getInstance()
-    {
-        if ( instance == null ) instance = new Shop();
-        return instance;
     }
 
     public List<Artikel> getSortiment()

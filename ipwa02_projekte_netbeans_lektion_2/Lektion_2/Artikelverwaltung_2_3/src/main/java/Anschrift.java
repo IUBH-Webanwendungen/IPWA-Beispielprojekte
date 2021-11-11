@@ -1,15 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+import jakarta.enterprise.context.ApplicationScoped;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-
-/**
- * @author marian.benner
- */
-@ManagedBean
 @ApplicationScoped
 public class Anschrift
 {
