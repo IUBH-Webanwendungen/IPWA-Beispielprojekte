@@ -6,6 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
@@ -21,6 +22,7 @@ public class Shop
     {
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("onlineshop");
+
         } catch (Exception e) {
             throw new IllegalStateException("Can't create database connection.", e);
         }
@@ -33,10 +35,13 @@ public class Shop
             Query q = em.createQuery("select a from Artikel a");
             List<Artikel> artikeln = q.getResultList();
             if(artikeln.size()==0) {
+                EntityTransaction transaction = em.getTransaction();
+                transaction.begin();
                 System.err.println("Initting Artikel-Kollektion.");
                 artikeln = basisAritkelKollektion();
                 for(Artikel a: artikeln)
                     em.persist(a);
+                transaction.commit();
             }
             em.close();
 

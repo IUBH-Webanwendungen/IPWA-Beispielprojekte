@@ -30,7 +30,7 @@
         <h:inputText id="text" value="#{artikelController.artikel.text}" size="40"/>
         <h:outputLabel value="Bild-Datei: " for="bilddatei"/>
         <h:inputText id="bilddatei"  value="#{artikelController.artikel.bild}"  size="40" >
-		  <p:ajax event="keyup" update="bild" listener="#{artikelController.handleBildKeyEvent}"/>
+		  <p:ajax event="keyup" update="bild" />
 		</h:inputText>
        
         <h:outputLabel value="Verfügbar ab:" for="verfuegbarAb"/>

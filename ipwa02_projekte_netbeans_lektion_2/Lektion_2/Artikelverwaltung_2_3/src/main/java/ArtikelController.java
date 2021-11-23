@@ -14,15 +14,19 @@ public class ArtikelController implements Serializable
     @Inject
     private Shop shop;
 
+    private Artikel artikel;
+
     public Artikel getArtikel()
     {
-        return shop.getSortiment().get(index);
+        if(artikel == null) artikel = shop.getSortiment().get(index);
+        return artikel;
     }
 
     public void vor()
     {
       if (index < shop.getSortiment().size() - 1) {
         index++;
+        artikel = null;
       }
     }
 
@@ -30,6 +34,7 @@ public class ArtikelController implements Serializable
     {
       if (index > 0) {
         index--;
+        artikel = null;
       }
     }
 
@@ -39,6 +44,7 @@ public class ArtikelController implements Serializable
     }
 
     public String handleBildKeyEvent(AjaxBehaviorEvent input) {
+        System.out.println("Input event! " + input);
         return "input";
     }
 }
