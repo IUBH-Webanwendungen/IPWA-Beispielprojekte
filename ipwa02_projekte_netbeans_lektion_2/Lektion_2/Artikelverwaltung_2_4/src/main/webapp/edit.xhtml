@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:rich="http://richfaces.org/rich"
+			xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<h:head>
-		<link rel="stylesheet" type="text/css" media="screen" href="stle.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
 		<title>Artikel bearbeiten</title>
 	</h:head>
 	<h:body>
@@ -21,13 +21,18 @@
 				<h:inputTextarea value="#{artikelController.neuerArtikel.text}" />
 
 				<h:outputText value="Verfügbar ab" />
-				<rich:calendar value="#{artikelController.neuerArtikel.verfuegbarAb}" >
-					</rich:calendar>
+				<p:calendar value="#{artikelController.neuerArtikel.verfuegbarAb}" >
+					</p:calendar>
 
 				<h:outputText value="Bild" />
 				<h:panelGrid columns="1">
-					<h:inputText value="#{artikelController.neuerArtikel.bild}" />
-					<h:graphicImage class="artikel" url="#{artikelController.neuerArtikel.bild}" />
+					<p:selectOneMenu value="#{artikelController.neuerArtikel.bild}">
+						<f:selectItem itemValue="filzschuhe.jpg" itemLabel="filzschuhe.jpg"/>
+						<f:selectItem itemValue="handtasche.jpg" itemLabel="handtasche.jpg"/>
+						<f:selectItem itemValue="hasen.png" itemLabel="hasen.png"/>
+						<p:ajax event="valueChange" update="bild"/>
+					</p:selectOneMenu>
+					<h:graphicImage id="bild" style="width:20em" class="artikel" url="#{artikelController.neuerArtikel.bild}" />
 				</h:panelGrid>
 
 				<h:outputText value="Aktionen" />
@@ -39,5 +44,5 @@
 				</h:panelGrid>
 			</h:panelGrid>
 		</h:form>
-	</h:body>
+	</h:body>§
 </html>
