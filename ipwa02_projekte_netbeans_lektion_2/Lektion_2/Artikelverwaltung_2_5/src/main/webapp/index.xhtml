@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
 			xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   <h:head>
@@ -34,29 +33,22 @@
         <h:outputLabel value="Beschreibung: " for="text"/>
         <h:inputText id="text" value="#{artikelController.artikel.text}" size="40"/>
         <h:outputLabel value="Bild-Datei: " for="bilddatei"/>
-        <rich:select value="#{artikelController.artikel.bild}">
-					<f:selectItem itemValue="filzschuhe.jpg" itemLabel="filzschuhe.jpg"/>
-					<f:selectItem itemValue="handtasche.jpg" itemLabel="handtasche.jpg"/>
-					<f:selectItem itemValue="hasen.png" itemLabel="hasen.png"/>
-					<a4j:ajax event="change" render="bild"/>
-        </rich:select>
-        <html></html>
-        <h:inputText 
-					id="bilddatei"
-					value="#{artikelController.artikel.bild}"
-					size="40" >
-					<a4j:ajax event="keyup" render="bild"/>
-				</h:inputText>
+        <p:selectOneMenu value="#{artikelController.artikel.bild}">
+          <f:selectItem itemValue="filzschuhe.jpg" itemLabel="filzschuhe.jpg"/>
+          <f:selectItem itemValue="handtasche.jpg" itemLabel="handtasche.jpg"/>
+          <f:selectItem itemValue="hasen.png" itemLabel="hasen.png"/>
+          <p:ajax event="valueChange" update="bild"/>
+        </p:selectOneMenu>
 
         <h:outputLabel value="Verfügbar ab:" for="verfuegbarAb"/>
-        <rich:calendar 
-					id="verfuegbarAb" 
-					value="#{artikelController.artikel.verfuegbarAb}" 
-					datePattern="dd.MM.yyyy"
-					enableManualInput="true">
-        </rich:calendar>
+        <p:calendar
+            id="verfuegbarAb"
+            value="#{artikelController.artikel.verfuegbarAb}"
+            datePattern="dd.MM.yyyy"
+            enableManualInput="true">
+        </p:calendar>
         <h:outputLabel value="Bild: " for="bild"/>
-        <h:graphicImage id="bild" url="#{artikelController.artikel.bild}" />
+        <h:graphicImage id="bild" style="width:20em" url="#{artikelController.artikel.bild}" />
 				
 				<h:outputText value="Bewertung abgeben" />
 				<h:panelGrid columns="1">

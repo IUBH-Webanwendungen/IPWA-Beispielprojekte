@@ -1,8 +1,10 @@
+import java.io.Serializable;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 @Entity
-public class Film extends Artikel {
+public class Film extends Artikel  implements Serializable
+{
 
 	private String trailer;
 
