@@ -5,48 +5,56 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Bewertung {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	private byte sterne;
-	private String kommentar;
+public class Bewertung
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	@ManyToOne
-	private Artikel artikel;
+    private byte sterne;
 
-	public long getId() {
-		return id;
-	}
+    private String kommentar;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    @ManyToOne
+    private Artikel artikel;
 
-	public byte getSterne() {
-		return sterne;
-	}
+    public long getId()
+    {
+        return id;
+    }
 
-	public void setSterne(byte sterne) {
-		this.sterne = sterne;
-	}
+    public void setId(long id)
+    {
+        this.id = id;
+    }
 
-	public String getKommentar() {
-		return kommentar;
-	}
+    public byte getSterne()
+    {
+        return sterne;
+    }
 
-	public void setKommentar(String kommentar) {
-		this.kommentar = kommentar;
-	}
+    public void setSterne(byte sterne)
+    {
+        this.sterne = sterne;
+    }
 
-	public Artikel getArtikel() {
-		return artikel;
-	}
+    public String getKommentar()
+    {
+        return kommentar;
+    }
 
-	public void setArtikel(Artikel artikel) {
-		this.artikel = artikel;
-	}
+    public void setKommentar(String kommentar)
+    {
+        this.kommentar = kommentar;
+    }
 
-	
+    public Artikel getArtikel()
+    {
+        return artikel;
+    }
+
+    public void setArtikel(Artikel artikel)
+    {
+        this.artikel = artikel;
+    }
 }

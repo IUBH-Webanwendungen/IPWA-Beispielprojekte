@@ -3,18 +3,21 @@ import jakarta.inject.Named;
 
 @Named
 @RequestScoped
-public class Artikel {
+public class Artikel
+{
+    private String name = "Filzpantoffeln 'Rudolph'";
 
-    private String name ="Filzpantoffeln 'Rudolph'";
-    
-    public Artikel() {
+    public Artikel()
+    {
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 }

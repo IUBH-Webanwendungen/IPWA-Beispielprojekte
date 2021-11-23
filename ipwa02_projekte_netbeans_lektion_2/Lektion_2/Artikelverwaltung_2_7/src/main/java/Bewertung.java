@@ -8,35 +8,41 @@ import jakarta.persistence.Id;
 @Entity
 public class Bewertung implements Serializable
 {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	private byte sterne;
-	private String kommentar;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	public long getId() {
-		return id;
-	}
+    private byte sterne;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    private String kommentar;
 
-	public byte getSterne() {
-		return sterne;
-	}
+    public long getId()
+    {
+        return id;
+    }
 
-	public void setSterne(byte sterne) {
-		this.sterne = sterne;
-	}
+    public void setId(long id)
+    {
+        this.id = id;
+    }
 
-	public String getKommentar() {
-		return kommentar;
-	}
+    public byte getSterne()
+    {
+        return sterne;
+    }
 
-	public void setKommentar(String kommentar) {
-		this.kommentar = kommentar;
-	}
-	
+    public void setSterne(byte sterne)
+    {
+        this.sterne = sterne;
+    }
+
+    public String getKommentar()
+    {
+        return kommentar;
+    }
+
+    public void setKommentar(String kommentar)
+    {
+        this.kommentar = kommentar;
+    }
 }

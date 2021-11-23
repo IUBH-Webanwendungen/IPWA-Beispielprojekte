@@ -9,39 +9,41 @@ import jakarta.inject.Named;
 @ViewScoped
 public class LoginController implements Serializable
 {
+    @Inject
+    private Shop shop;
 
-  @Inject
-  private Shop shop;
+    private Benutzer benutzer = new Benutzer();
 
-  private Benutzer benutzer = new Benutzer();
-
-  /**
-   * Get the value of benutzer
-   *
-   * @return the value of benutzer
-   */
-  public Benutzer getBenutzer() {
-    return benutzer;
-  }
-
-  /**
-   * Set the value of benutzer
-   *
-   * @param benutzer new value of benutzer
-   */
-  public void setBenutzer(Benutzer benutzer) {
-    this.benutzer = benutzer;
-  }
-
-  public String login() {
-    List<Benutzer> benutzerListe = shop.getBenutzer();
-    for (Benutzer b : benutzerListe) {
-      if (b.equals(this.benutzer))
-        return "index.xhtml";
+    /**
+     * Get the value of benutzer
+     *
+     * @return the value of benutzer
+     */
+    public Benutzer getBenutzer()
+    {
+        return benutzer;
     }
-    return "login.xhtml";
-}
 
+    /**
+     * Set the value of benutzer
+     *
+     * @param benutzer new value of benutzer
+     */
+    public void setBenutzer(Benutzer benutzer)
+    {
+        this.benutzer = benutzer;
+    }
+
+    public String login()
+    {
+        List<Benutzer> benutzerListe = shop.getBenutzer();
+        for (Benutzer b : benutzerListe) {
+          if (b.equals(this.benutzer)) {
+            return "index.xhtml";
+          }
+        }
+        return "login.xhtml";
+    }
 
 // etwas schöner ist die Trennung von check und Navigation:
 // private boolean checkLogin(){
@@ -59,5 +61,4 @@ public class LoginController implements Serializable
 //    else
 //      return "login.xhtml";
 //  }
-
 }

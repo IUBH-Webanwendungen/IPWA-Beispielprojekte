@@ -22,7 +22,6 @@ public class Shop
     {
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("onlineshop");
-
         } catch (Exception e) {
             throw new IllegalStateException("Can't create database connection.", e);
         }
@@ -34,13 +33,14 @@ public class Shop
             EntityManager em = entityManagerFactory.createEntityManager();
             Query q = em.createQuery("select a from Artikel a");
             List<Artikel> artikeln = q.getResultList();
-            if(artikeln.size()==0) {
+            if (artikeln.size() == 0) {
                 EntityTransaction transaction = em.getTransaction();
                 transaction.begin();
                 System.err.println("Initting Artikel-Kollektion.");
                 artikeln = basisAritkelKollektion();
-                for(Artikel a: artikeln)
+                for (Artikel a : artikeln) {
                     em.persist(a);
+                }
                 transaction.commit();
             }
             em.close();
@@ -54,7 +54,8 @@ public class Shop
         }
     }
 
-    private List<Artikel> basisAritkelKollektion() {
+    private List<Artikel> basisAritkelKollektion()
+    {
         List<Artikel> list = new LinkedList<>();
         list.add(new Artikel(1, "Filzschuhe schick", "Schicke Armani-branded Filzschuhen",
                 "filzschuhe.jpg"));

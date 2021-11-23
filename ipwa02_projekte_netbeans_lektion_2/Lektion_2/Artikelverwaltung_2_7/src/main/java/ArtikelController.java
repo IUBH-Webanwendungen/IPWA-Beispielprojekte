@@ -8,71 +8,86 @@ import jakarta.inject.Named;
 @ViewScoped
 public class ArtikelController implements Serializable
 {
+    private int index = 0;
 
-  private int index = 0;
-	private Artikel artikel = null;
-	private Bewertung neueBewertung = null;
+    private Artikel artikel = null;
 
-	@Inject
-	private Shop shop;
-  
-  public Artikel getArtikel() {
-    if(artikel == null)
-     	artikel = shop.getSortiment().get(index);
-    return artikel;
-  }
-  
-  public void vor(){
-    if (index < shop.getSortiment().size()-1)
-      index++;
-    artikel = null;
-  }
-  
-  public void zurueck(){
-    if (index > 0)
-      index--;
-    artikel = null;
-  }
+    private Bewertung neueBewertung = null;
 
-  public int getIndex() {
-    return index;
-  }
+    @Inject
+    private Shop shop;
 
-	public Bewertung getNeueBewertung() {
-		if(null == this.neueBewertung) {
-			this.neueBewertung = new Bewertung();
+    public Artikel getArtikel()
+    {
+		if (artikel == null) {
+			artikel = shop.getSortiment().get(index);
 		}
-		return this.neueBewertung;
-	}
-	public Artikel getNeuerArtikel() {
-		if(null == artikel) {
-			this.artikel = new Artikel();
+        return artikel;
+    }
+
+    public void vor()
+    {
+		if (index < shop.getSortiment().size() - 1) {
+			index++;
 		}
-		return this.artikel;
-	}
-  
-	public String add() {
-		return "edit";
-	}
+        artikel = null;
+    }
 
-	public String abbrechen() {
-		return "index";
-	}
-	
-  
-	public String speichern() {
-		shop.saveArticle(artikel);
-		return null;
-	}
+    public void zurueck()
+    {
+		if (index > 0) {
+			index--;
+		}
+        artikel = null;
+    }
 
-	public String bewertungSpeichern() {
-		shop.saveRatingForArticle(neueBewertung, getArtikel());
-		this.neueBewertung = null;
-		return "";
-	}
+    public int getIndex()
+    {
+        return index;
+    }
 
-	public String entferneBewertung(Bewertung bewertung) {
-		shop.deleteRatingForArticle(bewertung, getArtikel());
-		return "";
-	}
+    public Bewertung getNeueBewertung()
+    {
+        if (null == this.neueBewertung) {
+            this.neueBewertung = new Bewertung();
+        }
+        return this.neueBewertung;
+    }
+
+    public Artikel getNeuerArtikel()
+    {
+        if (null == artikel) {
+            this.artikel = new Artikel();
+        }
+        return this.artikel;
+    }
+
+    public String add()
+    {
+        return "edit";
+    }
+
+    public String abbrechen()
+    {
+        return "index";
+    }
+
+    public String speichern()
+    {
+        shop.saveArticle(artikel);
+        return null;
+    }
+
+    public String bewertungSpeichern()
+    {
+        shop.saveRatingForArticle(neueBewertung, getArtikel());
+        this.neueBewertung = null;
+        return "";
+    }
+
+    public String entferneBewertung(Bewertung bewertung)
+    {
+        shop.deleteRatingForArticle(bewertung, getArtikel());
+        return "";
+    }
 }

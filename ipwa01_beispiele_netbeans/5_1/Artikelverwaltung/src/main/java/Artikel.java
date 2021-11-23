@@ -1,30 +1,38 @@
-public class Artikel {
+public class Artikel
+{
+    private int nr;
 
-  private int nr;
-  private String name;
-  private String beschreibung;
-  private String bild;
+    private String name;
 
-  public Artikel(int nr, String name, String beschreibung, String bild) {
-    this.nr = nr;
-    this.name = name;
-    this.beschreibung = beschreibung;
-    this.bild = bild;
-  }
+    private String beschreibung;
 
-  public String getName() {
-    return name;
-  }
+    private String bild;
 
-  public int getNr() {
-    return nr;
-  }
+    public Artikel(int nr, String name, String beschreibung, String bild)
+    {
+        this.nr = nr;
+        this.name = name;
+        this.beschreibung = beschreibung;
+        this.bild = bild;
+    }
 
-  public String getBeschreibung() {
-    return beschreibung;
-  }
+    public String getName()
+    {
+        return name;
+    }
 
-  public String getBild() {
-    return bild;
-  }
+    public int getNr()
+    {
+        return nr;
+    }
+
+    public String getBeschreibung()
+    {
+        return beschreibung;
+    }
+
+    public String getBild()
+    {
+        return bild;
+    }
 }

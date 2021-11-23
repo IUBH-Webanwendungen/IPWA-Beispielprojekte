@@ -1,58 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-			xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-	<h:head>
-		<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
-		<title>Artikel bearbeiten</title>
-	</h:head>
-	<h:body>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputText value="Nummer" />
-				<h:inputText value="#{artikelController.artikel.nr}" />
+<h:head>
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+  <title>Artikel bearbeiten</title>
+</h:head>
+<h:body>
+  <h:form>
+    <h:panelGrid columns="2">
+      <h:outputText value="Nummer"/>
+      <h:inputText value="#{artikelController.artikel.nr}"/>
 
-				<h:outputText value="Name" />
-				<h:inputText value="#{artikelController.artikel.name}" >
-					<f:event type="jakarta.faces.event.PostValidateEvent" listener="#{artikelController.postValidateStuff}" /></h:inputText>
+      <h:outputText value="Name"/>
+      <h:inputText value="#{artikelController.artikel.name}">
+        <f:event type="jakarta.faces.event.PostValidateEvent" listener="#{artikelController.postValidateStuff}"/>
+      </h:inputText>
 
-				<h:outputText value="Beschreibung" />
-				<h:inputTextarea value="#{artikelController.artikel.text}" />
+      <h:outputText value="Beschreibung"/>
+      <h:inputTextarea value="#{artikelController.artikel.text}"/>
 
-				<h:outputText value="Verfügbar ab" />
-				<p:calendar value="#{artikelController.artikel.verfuegbarAb}" >
-				</p:calendar>
+      <h:outputText value="Verfügbar ab"/>
+      <p:calendar value="#{artikelController.artikel.verfuegbarAb}">
+      </p:calendar>
 
-				<h:outputText value="Bild" />
-				<h:panelGrid columns="1">
-					<h:inputText value="#{artikelController.artikel.bild}" />
-					<h:graphicImage class="artikel" url="#{artikelController.artikel.bild}" />
-				</h:panelGrid>
+      <h:outputText value="Bild"/>
+      <h:panelGrid columns="1">
+        <h:inputText value="#{artikelController.artikel.bild}"/>
+        <h:graphicImage class="artikel" url="#{artikelController.artikel.bild}"/>
+      </h:panelGrid>
 
-				<h:outputText value="Bewertungen" />
-				<h:dataTable value="#{artikelController.artikel.bewertungen}" 
-										 var="bewertung">
-					<h:column>
-						<h:outputText value="#{bewertung.sterne} Stern(e)" />
-					</h:column>
-					<h:column>
-						<h:outputText value="#{bewertung.kommentar}" />
-					</h:column>
-					<h:column>
-						<h:commandButton action="#{artikelController.delete(bewertung)}" value="Löschen" />
-					</h:column>
-				</h:dataTable>
+      <h:outputText value="Bewertungen"/>
+      <h:dataTable value="#{artikelController.artikel.bewertungen}"
+                   var="bewertung">
+        <h:column>
+          <h:outputText value="#{bewertung.sterne} Stern(e)"/>
+        </h:column>
+        <h:column>
+          <h:outputText value="#{bewertung.kommentar}"/>
+        </h:column>
+        <h:column>
+          <h:commandButton action="#{artikelController.delete(bewertung)}" value="Löschen"/>
+        </h:column>
+      </h:dataTable>
 
-				<h:outputText value="Aktionen" />
-				<h:panelGrid columns="2">
-					<h:commandButton	action="#{artikelController.cancelEdit}" 
-													 value="Abbrechen"/>
-					<h:commandButton	action="#{artikelController.saveEdit}" 
-													 value="Speichern"/>
-				</h:panelGrid>
-			</h:panelGrid>
-		</h:form>
-	</h:body>
+      <h:outputText value="Aktionen"/>
+      <h:panelGrid columns="2">
+        <h:commandButton action="#{artikelController.cancelEdit}"
+                         value="Abbrechen"/>
+        <h:commandButton action="#{artikelController.saveEdit}"
+                         value="Speichern"/>
+      </h:panelGrid>
+    </h:panelGrid>
+  </h:form>
+</h:body>
 </html>

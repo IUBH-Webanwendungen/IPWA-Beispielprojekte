@@ -1,6 +1,6 @@
-
 import java.util.Date;
 import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,91 +8,107 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
 @Inheritance
-  (strategy = InheritanceType.JOINED)
-public class Artikel {
+        (strategy = InheritanceType.JOINED)
+public class Artikel
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int nr;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int nr;
-	private String name;
-	private String text;
-	private String bild;
-	@Temporal(TemporalType.DATE)
-	private Date verfuegbarAb;
+    private String name;
 
-	// Getter und Setter
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "artikel")
-	private List<Bewertung> bewertungen;
+    private String text;
 
-	public Artikel() {
-	}
+    private String bild;
 
-	public Artikel(int nr, String name, String text, String bild) {
-		this(nr, name, text, bild, new Date(0));
-	}
+    @Temporal(TemporalType.DATE)
+    private Date verfuegbarAb;
 
-	public Artikel(int nr, String name, String text, String bild, Date verfuegbarAb) {
-		this.nr = nr;
-		this.name = name;
-		this.text = text;
-		this.bild = bild;
-		this.verfuegbarAb = verfuegbarAb;
-	}
+    // Getter und Setter
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artikel")
+    private List<Bewertung> bewertungen;
 
-	public String getName() {
-		return name;
-	}
+    public Artikel()
+    {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Artikel(int nr, String name, String text, String bild)
+    {
+        this(nr, name, text, bild, new Date(0));
+    }
 
-	public int getNr() {
-		return nr;
-	}
+    public Artikel(int nr, String name, String text, String bild, Date verfuegbarAb)
+    {
+        this.nr = nr;
+        this.name = name;
+        this.text = text;
+        this.bild = bild;
+        this.verfuegbarAb = verfuegbarAb;
+    }
 
-	public void setNr(int nr) {
-		this.nr = nr;
-	}
+    public String getName()
+    {
+        return name;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public int getNr()
+    {
+        return nr;
+    }
 
-	public String getBild() {
-		return bild;
-	}
+    public void setNr(int nr)
+    {
+        this.nr = nr;
+    }
 
-	public void setBild(String bild) {
-		this.bild = bild;
-	}
+    public String getText()
+    {
+        return text;
+    }
 
-	public Date getVerfuegbarAb() {
-		return verfuegbarAb;
-	}
+    public void setText(String text)
+    {
+        this.text = text;
+    }
 
-	public void setVerfuegbarAb(Date verfuegbarAb) {
-		this.verfuegbarAb = verfuegbarAb;
-	}
+    public String getBild()
+    {
+        return bild;
+    }
 
-	public List<Bewertung> getBewertungen() {
-		return bewertungen;
-	}
+    public void setBild(String bild)
+    {
+        this.bild = bild;
+    }
 
-	public void setBewertungen(List<Bewertung> bewertungen) {
-		this.bewertungen = bewertungen;
-	}
+    public Date getVerfuegbarAb()
+    {
+        return verfuegbarAb;
+    }
 
+    public void setVerfuegbarAb(Date verfuegbarAb)
+    {
+        this.verfuegbarAb = verfuegbarAb;
+    }
 
+    public List<Bewertung> getBewertungen()
+    {
+        return bewertungen;
+    }
+
+    public void setBewertungen(List<Bewertung> bewertungen)
+    {
+        this.bewertungen = bewertungen;
+    }
 }

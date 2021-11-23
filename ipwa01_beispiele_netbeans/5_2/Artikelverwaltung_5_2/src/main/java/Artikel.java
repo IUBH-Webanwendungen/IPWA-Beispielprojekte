@@ -1,48 +1,59 @@
 import java.io.Serializable;
 
-public class Artikel  implements Serializable
+public class Artikel implements Serializable
 {
+    private int nr;
 
-  private int nr;
-  private String name;
-  private String text;
-  private String bild;
-  
-  public Artikel(){
-  }
+    private String name;
 
-  public Artikel(int nr, String name, String text, String bild) {
-    this.nr = nr;
-    this.name = name;
-    this.text = text;
-    this.bild = bild;
-  }
+    private String text;
 
-  public String getName() {
-    return name;
-  }
+    private String bild;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public Artikel()
+    {
+    }
 
-  public int getNr() {
-    return nr;
-  }
+    public Artikel(int nr, String name, String text, String bild)
+    {
+        this.nr = nr;
+        this.name = name;
+        this.text = text;
+        this.bild = bild;
+    }
 
-  public String getText() {
-    return text;
-  }
-  
-  public void setText(String text) {
-    this.text = text;
-  }
+    public String getName()
+    {
+        return name;
+    }
 
-  public String getBild() {
-    return bild;
-  }
-  
-  public void setBild(String bild) {
-    this.bild = bild;
-  }
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public int getNr()
+    {
+        return nr;
+    }
+
+    public String getText()
+    {
+        return text;
+    }
+
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+
+    public String getBild()
+    {
+        return bild;
+    }
+
+    public void setBild(String bild)
+    {
+        this.bild = bild;
+    }
 }

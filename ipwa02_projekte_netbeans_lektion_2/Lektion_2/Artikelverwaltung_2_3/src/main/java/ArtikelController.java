@@ -18,24 +18,26 @@ public class ArtikelController implements Serializable
 
     public Artikel getArtikel()
     {
-        if(artikel == null) artikel = shop.getSortiment().get(index);
+        if (artikel == null) {
+            artikel = shop.getSortiment().get(index);
+        }
         return artikel;
     }
 
     public void vor()
     {
-      if (index < shop.getSortiment().size() - 1) {
-        index++;
-        artikel = null;
-      }
+        if (index < shop.getSortiment().size() - 1) {
+            index++;
+            artikel = null;
+        }
     }
 
     public void zurueck()
     {
-      if (index > 0) {
-        index--;
-        artikel = null;
-      }
+        if (index > 0) {
+            index--;
+            artikel = null;
+        }
     }
 
     public int getIndex()
@@ -43,7 +45,8 @@ public class ArtikelController implements Serializable
         return index;
     }
 
-    public String handleBildKeyEvent(AjaxBehaviorEvent input) {
+    public String handleBildKeyEvent(AjaxBehaviorEvent input)
+    {
         System.out.println("Input event! " + input);
         return "input";
     }

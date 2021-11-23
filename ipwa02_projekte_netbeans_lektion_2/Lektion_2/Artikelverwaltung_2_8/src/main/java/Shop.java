@@ -11,67 +11,75 @@ import jakarta.persistence.Query;
 
 @Named
 @ApplicationScoped
-public class Shop {
+public class Shop
+{
+    private final static EntityManagerFactory emf = Persistence.createEntityManagerFactory("onlineshop");
 
-	private List<Artikel> sortiment = new ArrayList<Artikel>();
-	private final static EntityManagerFactory emf = Persistence.createEntityManagerFactory("onlineshop");
+    private List<Artikel> sortiment = new ArrayList<Artikel>();
 
-	public Shop() {
-	}
+    public Shop()
+    {
+    }
 
-	public List<Artikel> getSortiment() {
-		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select a from Artikel a");
-		List<Artikel> artikel = q.getResultList();
-		return artikel;
-	}
+    public List<Artikel> getSortiment()
+    {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("select a from Artikel a");
+        List<Artikel> artikel = q.getResultList();
+        return artikel;
+    }
 
-	void saveArticle(Artikel artikel) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction t = em.getTransaction();
-		t.begin();
-		em.merge(artikel);
-		//em.persist(artikel);
-		t.commit();
-	}
+    void saveArticle(Artikel artikel)
+    {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        em.merge(artikel);
+        //em.persist(artikel);
+        t.commit();
+    }
 
-	public Artikel getArtikel(Artikel artikel) {
-		EntityManager em = emf.createEntityManager();
-		return em.merge(artikel);
-		//em.refresh(a);
-	}
+    public Artikel getArtikel(Artikel artikel)
+    {
+        EntityManager em = emf.createEntityManager();
+        return em.merge(artikel);
+        //em.refresh(a);
+    }
 
-	public void saveRatingForArticle(Bewertung bewertung, Artikel artikel) {
-		artikel.getBewertungen().add(bewertung);
-		bewertung.setArtikel(artikel);
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction t = em.getTransaction();
-		t.begin();
-		em.persist(bewertung);
-		em.merge(artikel);
-		t.commit();
-	}
+    public void saveRatingForArticle(Bewertung bewertung, Artikel artikel)
+    {
+        artikel.getBewertungen().add(bewertung);
+        bewertung.setArtikel(artikel);
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        em.persist(bewertung);
+        em.merge(artikel);
+        t.commit();
+    }
 
-	public List<Film> getFilme() {
-		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select a from Film a");
-		List<Film> filme = q.getResultList();
-		return filme;
-	}
+    public List<Film> getFilme()
+    {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("select a from Film a");
+        List<Film> filme = q.getResultList();
+        return filme;
+    }
 
-	public void delete(Bewertung bewertung) {
-		Artikel a = new Artikel();
-		a.setName("Hello ");
+    public void delete(Bewertung bewertung)
+    {
+        Artikel a = new Artikel();
+        a.setName("Hello ");
 
-		bewertung.getArtikel().getBewertungen().remove(bewertung);
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction t = em.getTransaction();
-		t.begin();
-			bewertung = em.merge(bewertung);
-			em.merge(bewertung.getArtikel());
-			em.remove(bewertung);
-			a = em.find(Artikel.class, 12);
-		t.commit();
-		em.close();
-	}
+        bewertung.getArtikel().getBewertungen().remove(bewertung);
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        bewertung = em.merge(bewertung);
+        em.merge(bewertung.getArtikel());
+        em.remove(bewertung);
+        a = em.find(Artikel.class, 12);
+        t.commit();
+        em.close();
+    }
 }
